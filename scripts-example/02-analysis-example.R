@@ -51,7 +51,7 @@ choices <- choices_updated |>
 
 # Loa for main only
 loa <- loa |>
-  filter(level == "main")
+  filter(dataset == "main")
 
 # Run analysis ------------------------------------------------------------
 
