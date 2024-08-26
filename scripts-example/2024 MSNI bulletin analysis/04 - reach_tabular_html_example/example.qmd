@@ -1,0 +1,95 @@
+---
+title: Tabular html output
+subtitle: XXX2499
+
+format:
+  reach_tabular_html-html: default
+author: yannsay-impact
+date: last-modified
+embed-resources: true
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(gt)
+library(stringr)
+source("R/create_map_list.R")
+source("R/group_x_var.R")
+
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+
+results_table <- readRDS("../outputs/labeled_results_table.RDS")
+
+msni_explo_loa <- readxl::read_excel("../inputs/msni_bulletin_loa.xlsx", sheet = "basic")
+
+msni_explo_loa <- msni_explo_loa %>% 
+  mutate(group_var = ifelse(is.na(group_var), "Overall", group_var))
+results_table <- results_table |> 
+  left_join(select(msni_explo_loa, -dataset, -bulletin_reference)) |>
+  mutate(tab = factor(tab, levels = unique(msni_explo_loa$tab)),
+         section = factor(section, levels = unique(msni_explo_loa$section)),
+         indicator = factor(indicator, levels = unique(msni_explo_loa$indicator)))
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+
+tab_section_indicators_results_table_list <- results_table %>%
+   create_map_nested_list("tab") %>%
+   map(~create_map_nested_list(.x, "section")) %>%
+   map(~map(.x, ~create_map_nested_list(.x, "indicator")))
+```
+
+::: {.panel-tabset}
+
+## Introduction
+
+Write something here
+
+```{r}
+#| results: asis
+#| echo: false
+
+for(i in names(tab_section_indicators_results_table_list)) {
+
+  cat(paste("## ", i, "\n\n"))
+
+  for(j in names(tab_section_indicators_results_table_list[[i]])) {
+
+    cat(paste("### Section: ", j, "\n\n"))
+
+    for(k in names(tab_section_indicators_results_table_list[[i]][[j]])) {
+
+      cat(paste("#### Indicator: ", k, "\n\n"))
+
+      tab_section_indicators_results_table_list[[i]][[j]][[k]] |> 
+        create_gt_table_group_x_var() |>
+        create_gt_group_x_var() |>
+        data_color(columns = -n_total,
+                     direction = c("row"),
+                     palette = "Purples",
+                     na_color = "white") |>
+        as_raw_html() |>
+        cat()
+      }
+    }
+}
+
+```
+
+:::
+
+
