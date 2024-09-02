@@ -1,1 +1,36 @@
-# humind-data
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# humind.data
+
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/humind.data)](https://CRAN.R-project.org/package=humind.data)
+[![R-CMD-check](https://github.com/impact-initiatives-hppu/humind.data/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/impact-initiatives-hppu/humind.data/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/impact-initiatives-hppu/humind.data/branch/main/graph/badge.svg)](https://app.codecov.io/gh/impact-initiatives-hppu/humind.data?branch=main)
+<!-- badges: end -->
+
+`humind.data` provides dummy data based on the 2024 MSNA indicator bank
+and kobo template, with some additions (e.g. expenditures). It also
+provides some [script
+examples](https://github.com/impact-initiatives-hppu/humind.data/tree/main/scripts-example)
+for composing indicators, analysing with
+[impactR.analysis](https://impact-initiatives-hppu.github.io/impactR.analysis/),
+and very basic visualizations.
+
+This repository may be subject to many changes in the coming year, and
+mainly showcases examples to try out humind and subsequent analyses.
+
+## Installation
+
+You can install the last version of `humind.data` from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("impact-initiatives-hppu/humind.data")
+```

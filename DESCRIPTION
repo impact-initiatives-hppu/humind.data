@@ -1,0 +1,19 @@
+Package: humind.data
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Laith", "Abu-Nawwas", , "laith.abu-nawwas@impact-initiatives.org", role = c("aut", "cre")),
+    person("Guillaume", "Noblet", , "gnoblet@zaclys.net", role = "aut")
+    )
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+URL: https://impact-initiatives-hppu.github.io/humind.data/
+Depends: 
+    R (>= 2.10)
+LazyData: true

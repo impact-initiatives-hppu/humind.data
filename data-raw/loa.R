@@ -6,16 +6,16 @@ loa <- import_full_xlsx("data-raw/loa.xlsx")
 survey_update <- loa$update_survey
 choices_update <- loa$update_choices
 
-kobo <- import_full_xlsx("data-raw/REACH_2024_MSNA-kobo-tool_draft_v9.xlsx")
+kobo <- import_full_xlsx("data-raw/REACH_2024_MSNA-kobo-tool_draft_v11.xlsx")
 survey <- kobo$survey
 choices <- kobo$choices
 
-survey_update <- bind_rows(
+survey_updated <- bind_rows(
   survey,
   survey_update
 )
-s
-choices_update <- bind_rows(
+
+choices_updated <- bind_rows(
   choices,
   choices_update |> mutate(
     across(
@@ -25,8 +25,8 @@ choices_update <- bind_rows(
   )
 )
 
-loa <- loa$loa_v1
+loa <- loa$loa
 
 usethis::use_data(loa, overwrite = TRUE)
-usethis::use_data(survey_update, overwrite = TRUE)
-usethis::use_data(choices_update, overwrite = TRUE)
+usethis::use_data(survey_updated, overwrite = TRUE)
+usethis::use_data(choices_updated, overwrite = TRUE)
