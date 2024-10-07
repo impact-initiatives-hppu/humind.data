@@ -82,9 +82,9 @@ main <- mutate(
 main <- main |>
   # Demographics
   add_hoh_final() |>
-  add_age_cat(age_col = "resp_age", breaks = c(-1, 17, 59, 120)) |>
+  add_age_cat(age_col = "resp_age", breaks = c(0, 18, 60, 120)) |>
   add_age_18_cat(age_col = "resp_age") |>
-  add_age_cat(age_col = "hoh_age", breaks = c(-1, 17, 59, 120)) |>
+  add_age_cat(age_col = "hoh_age", breaks = c(0, 18, 60, 120)) |>
   add_age_18_cat(age_col = "hoh_age") |>
   # Protection
   add_child_sep_cat() |>
@@ -118,7 +118,7 @@ main <- main |>
   add_income_source_zero_to_sl() |>
   add_income_source_prop() |>
   add_income_source_rank() |>
-  # Expenditure 
+  # Expenditure
   add_expenditure_type_zero_freq(
     # Note that in the initial kobo template the utilities column was:
     # cm_expenditure_frequent_utilitues
@@ -132,7 +132,7 @@ main <- main |>
       "cm_expenditure_frequent_transportation",
       "cm_expenditure_frequent_communication",
       "cm_expenditure_frequent_other")
-  ) |> 
+  ) |>
   add_expenditure_type_prop_freq(
     # Note that in the initial kobo template the utilities column was:
     # cm_expenditure_frequent_utilitues
@@ -146,7 +146,7 @@ main <- main |>
     "cm_expenditure_frequent_transportation",
     "cm_expenditure_frequent_communication",
     "cm_expenditure_frequent_other"
-  ) |> 
+  ) |>
   add_expenditure_type_freq_rank(
     # Note that in the initial kobo template the utilities column was:
     # cm_expenditure_frequent_utilitues
@@ -161,9 +161,9 @@ main <- main |>
       "cm_expenditure_frequent_transportation",
       "cm_expenditure_frequent_communication",
       "cm_expenditure_frequent_other")
-  ) |> 
-  add_expenditure_type_zero_infreq() |> 
-  add_expenditure_type_prop_infreq() |> 
+  ) |>
+  add_expenditure_type_zero_infreq() |>
+  add_expenditure_type_prop_infreq() |>
   add_expenditure_type_infreq_rank() |>
   # AAP
   add_received_assistance() |>
